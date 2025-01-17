@@ -28,6 +28,7 @@ func _on_special_2_cooldown_timeout() -> void:
 	
 func cannon_rotation() -> void:
 	# Makes the cannon part of the sprite follow the mouse
+	# FIX : CANNON DOESN'T ROTATE TO OTHER MAX WITH MOUSE IS MOVED BEHIND IT
 	$playerTopSprite.look_at(get_global_mouse_position())
 	# Stops cannon rotation at certain angle
 	$playerTopSprite.rotation_degrees = clamp($playerTopSprite.rotation_degrees, -MAX_CANNON_ANGLE, MAX_CANNON_ANGLE)
@@ -53,11 +54,15 @@ func specials_input() -> void:
 	var cannon_direction : Vector2 = (get_global_mouse_position() - position).normalized()
 	var body_direction : Vector2 = Vector2(cos(rotation), sin(rotation))
 	
+	# FIX : WHEN MOUSE IS OUT OF MAX ANGLE, IT NEEDS TO FIRE AT THAT MAX ANGLE AND NOT AT BIGGER ONES
+	if cannon_direction.angle_to(body_direction) < -1.309:
+		cannon_direction = Vector2(cos(-0.262), sin(-0.262))
+	
 	if Input.is_action_just_pressed("attack") and can_attack:
 		can_attack = false
 		$playerTimers/attackCooldown.start(0.5)
 		bullet_shot.emit($playerTopSprite/bulletMarker.global_position, cannon_direction)
-		print(cannon_direction.angle_to(body_direction))
+		print(rad_to_deg(cannon_direction.angle_to(body_direction)))
 
 	if Input.is_action_just_pressed("special1") and can_special_1:
 		can_special_1 = false
