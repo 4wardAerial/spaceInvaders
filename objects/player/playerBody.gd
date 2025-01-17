@@ -37,17 +37,17 @@ func specials_input() -> void:
 	if Input.is_action_just_pressed("attack") and can_attack:
 		print("ATTACK")
 		can_attack = false
-		$attackCooldown.start(0.5)
+		$playerTimers/attackCooldown.start(0.5)
 
 	if Input.is_action_just_pressed("special1") and can_special_1:
 		print("SPECIAL 1")
 		can_special_1 = false
-		$special1Cooldown.start(2.0)
+		$playerTimers/special1Cooldown.start(2.0)
 
 	if Input.is_action_just_pressed("special2") and can_special_2:
 		print("SPECIAL 2")
 		can_special_2 = false
-		$special2Cooldown.start(5.0)
+		$playerTimers/special2Cooldown.start(5.0)
 
 func _process(delta: float) -> void:
 	specials_input()
