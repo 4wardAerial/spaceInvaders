@@ -8,7 +8,7 @@ radius = 37.0
 height = 114.0
 
 [node name="player" type="Node2D"]
-position = Vector2(955, 504)
+position = Vector2(450, 450)
 
 [node name="playerBody" type="CharacterBody2D" parent="."]
 script = ExtResource("1_58cc7")
@@ -20,6 +20,14 @@ texture = ExtResource("1_we2eh")
 
 [node name="playerCollision" type="CollisionShape2D" parent="playerBody"]
 shape = SubResource("CapsuleShape2D_ek3hn")
+
+[node name="playerCamera" type="Camera2D" parent="playerBody"]
+zoom = Vector2(0.75, 0.75)
+limit_left = 0
+limit_top = 0
+limit_right = 9600
+limit_bottom = 5400
+position_smoothing_enabled = true
 
 [node name="playerTimers" type="Node2D" parent="playerBody"]
 
