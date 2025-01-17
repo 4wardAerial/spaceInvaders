@@ -20,3 +20,7 @@ texture = ExtResource("1_we2eh")
 
 [node name="playerCollision" type="CollisionShape2D" parent="playerBody"]
 shape = SubResource("CapsuleShape2D_ek3hn")
+
+[node name="Timer" type="Timer" parent="playerBody"]
+
+[connection signal="timeout" from="playerBody/Timer" to="playerBody" method="_on_attack_cooldown_timeout"]
