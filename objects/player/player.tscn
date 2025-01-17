@@ -21,7 +21,6 @@ texture = ExtResource("1_we2eh")
 
 [node name="playerTopSprite" type="Sprite2D" parent="playerBody"]
 position = Vector2(6.41402e-06, 1.65564e-05)
-rotation = -1.57079
 scale = Vector2(0.660117, 0.117188)
 texture = ExtResource("1_we2eh")
 offset = Vector2(54.1609, -0.000732422)

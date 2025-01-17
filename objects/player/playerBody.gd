@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
 const SPEED : float = 100.0
-const ROTATION_SPEED : float = 1.5
+const ROTATION_SPEED : float = 1.0
 const MIN_VELOCITY : float = 10.0
 const MAX_VELOCITY : float = 100.0
-const ACCEL : float = 2.0
-const DRAG : float = 1.0     
+const MAX_CANNON_ANGLE : int = 60
+const ACCEL : float = 1.0
+const DRAG : float = 2.0     
 
 var rotation_direction : float = 0
 var can_attack : bool = true
@@ -20,16 +21,21 @@ func _on_special_1_cooldown_timeout() -> void:
 
 func _on_special_2_cooldown_timeout() -> void:
 	can_special_2 = true
+	
+func cannon_rotation() -> void:
+	# Makes the cannon part of the sprite follow the mouse
+	$playerTopSprite.look_at(get_global_mouse_position())
+	# Stops cannon rotation at certain angle
+	$playerTopSprite.rotation_degrees = clamp($playerTopSprite.rotation_degrees, -MAX_CANNON_ANGLE, MAX_CANNON_ANGLE)
 
 func movement_input(delta: float) -> void:
-	# Makes the player look at the mouse and move to it in a straight line 
-	$playerTopSprite.look_at(get_global_mouse_position())
+	# Bottom part of the sprite rotates via input
 	rotation_direction = Input.get_axis("left", "right")
 	
 	if Input.is_action_pressed("down") or Input.is_action_pressed("up"):
-		print("PRESSED")
-		
+		# '+=' gives acceleration, but velocity is limited by 'limit_length'
 		velocity += transform.x * Input.get_axis("down", "up") * SPEED * ACCEL * delta
+		velocity = velocity.limit_length(MAX_VELOCITY)
 		
 	else:
 		# Reduces velocity until full stop
@@ -57,6 +63,7 @@ func specials_input() -> void:
 
 
 func _process(delta: float) -> void:
+	cannon_rotation()
 	specials_input()
 
 func _physics_process(delta: float) -> void:
