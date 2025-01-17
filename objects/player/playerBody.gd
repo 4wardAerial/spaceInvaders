@@ -49,8 +49,10 @@ func specials_input() -> void:
 		can_special_2 = false
 		$playerTimers/special2Cooldown.start(5.0)
 
+
 func _process(delta: float) -> void:
 	specials_input()
+	print(position)
 
 func _physics_process(delta: float) -> void:
 	movement_input(delta)

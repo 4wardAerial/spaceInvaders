@@ -13,10 +13,17 @@ position = Vector2(450, 450)
 [node name="playerBody" type="CharacterBody2D" parent="."]
 script = ExtResource("1_58cc7")
 
-[node name="playerSprite" type="Sprite2D" parent="playerBody"]
+[node name="playerBottomSprite" type="Sprite2D" parent="playerBody"]
 position = Vector2(-1.4782e-05, -0.499994)
 scale = Vector2(0.5625, 0.898438)
 texture = ExtResource("1_we2eh")
+
+[node name="playerTopSprite" type="Sprite2D" parent="playerBody"]
+position = Vector2(6.41402e-06, 1.65564e-05)
+rotation = -1.57079
+scale = Vector2(0.660117, 0.117188)
+texture = ExtResource("1_we2eh")
+offset = Vector2(54.1609, -0.000732422)
 
 [node name="playerCollision" type="CollisionShape2D" parent="playerBody"]
 shape = SubResource("CapsuleShape2D_ek3hn")
