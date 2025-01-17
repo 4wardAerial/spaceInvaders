@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="spaceInvaders"
-run/main_scene="res://objects/player/player.tscn"
+run/main_scene="res://objects/game/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://images/icon.svg"
 
 [display]
 

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://q0rt42xv4m8w"]
+
+[ext_resource type="Texture2D" uid="uid://bbryqggr8pbmj" path="res://images/bckg_totk_circles.png" id="1_ih6l5"]
+
+[node name="world" type="Node2D"]
+
+[node name="worldBackground" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_ih6l5")
