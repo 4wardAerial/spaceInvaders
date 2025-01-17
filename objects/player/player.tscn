@@ -8,11 +8,12 @@ radius = 37.0
 height = 74.0
 
 [node name="playerBody" type="CharacterBody2D"]
+rotation = -1.57079
 script = ExtResource("1_58cc7")
 
 [node name="playerBottomSprite" type="Sprite2D" parent="."]
 position = Vector2(-5.72205e-06, -1.0848e-05)
-rotation = -1.57079
+rotation = 1.57079
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_we2eh")
 
@@ -21,6 +22,10 @@ position = Vector2(6.41402e-06, 1.65564e-05)
 scale = Vector2(0.660117, 0.117188)
 texture = ExtResource("1_we2eh")
 offset = Vector2(54.1609, -0.000732422)
+
+[node name="bulletMarker" type="Marker2D" parent="playerTopSprite"]
+position = Vector2(115.131, -0.000141281)
+scale = Vector2(1.51488, 8.5333)
 
 [node name="playerCollision" type="CollisionShape2D" parent="."]
 rotation = -1.57079

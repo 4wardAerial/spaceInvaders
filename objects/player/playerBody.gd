@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal bullet_shot
+signal bullet_shot(posit, direct)
 signal special_1_shot
 signal special_2_shot
 
@@ -50,10 +50,14 @@ func movement_input(delta: float) -> void:
 			velocity = Vector2.ZERO
 
 func specials_input() -> void:
+	var cannon_direction : Vector2 = (get_global_mouse_position() - position).normalized()
+	var body_direction : Vector2 = Vector2(cos(rotation), sin(rotation))
+	
 	if Input.is_action_just_pressed("attack") and can_attack:
 		can_attack = false
 		$playerTimers/attackCooldown.start(0.5)
-		bullet_shot.emit()
+		bullet_shot.emit($playerTopSprite/bulletMarker.global_position, cannon_direction)
+		print(cannon_direction.angle_to(body_direction))
 
 	if Input.is_action_just_pressed("special1") and can_special_1:
 		can_special_1 = false
