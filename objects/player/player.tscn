@@ -7,29 +7,26 @@
 radius = 37.0
 height = 74.0
 
-[node name="player" type="Node2D"]
-position = Vector2(450, 450)
-
-[node name="playerBody" type="CharacterBody2D" parent="."]
+[node name="playerBody" type="CharacterBody2D"]
 script = ExtResource("1_58cc7")
 
-[node name="playerBottomSprite" type="Sprite2D" parent="playerBody"]
+[node name="playerBottomSprite" type="Sprite2D" parent="."]
 position = Vector2(-5.72205e-06, -1.0848e-05)
 rotation = -1.57079
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_we2eh")
 
-[node name="playerTopSprite" type="Sprite2D" parent="playerBody"]
+[node name="playerTopSprite" type="Sprite2D" parent="."]
 position = Vector2(6.41402e-06, 1.65564e-05)
 scale = Vector2(0.660117, 0.117188)
 texture = ExtResource("1_we2eh")
 offset = Vector2(54.1609, -0.000732422)
 
-[node name="playerCollision" type="CollisionShape2D" parent="playerBody"]
+[node name="playerCollision" type="CollisionShape2D" parent="."]
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_ek3hn")
 
-[node name="playerCamera" type="Camera2D" parent="playerBody"]
+[node name="playerCamera" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
 limit_left = 0
 limit_top = 0
@@ -37,14 +34,14 @@ limit_right = 9600
 limit_bottom = 5400
 position_smoothing_enabled = true
 
-[node name="playerTimers" type="Node2D" parent="playerBody"]
+[node name="playerTimers" type="Node2D" parent="."]
 
-[node name="attackCooldown" type="Timer" parent="playerBody/playerTimers"]
+[node name="attackCooldown" type="Timer" parent="playerTimers"]
 
-[node name="special1Cooldown" type="Timer" parent="playerBody/playerTimers"]
+[node name="special1Cooldown" type="Timer" parent="playerTimers"]
 
-[node name="special2Cooldown" type="Timer" parent="playerBody/playerTimers"]
+[node name="special2Cooldown" type="Timer" parent="playerTimers"]
 
-[connection signal="timeout" from="playerBody/playerTimers/attackCooldown" to="playerBody" method="_on_attack_cooldown_timeout"]
-[connection signal="timeout" from="playerBody/playerTimers/special1Cooldown" to="playerBody" method="_on_special_1_cooldown_timeout"]
-[connection signal="timeout" from="playerBody/playerTimers/special2Cooldown" to="playerBody" method="_on_special_2_cooldown_timeout"]
+[connection signal="timeout" from="playerTimers/attackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="playerTimers/special1Cooldown" to="." method="_on_special_1_cooldown_timeout"]
+[connection signal="timeout" from="playerTimers/special2Cooldown" to="." method="_on_special_2_cooldown_timeout"]
