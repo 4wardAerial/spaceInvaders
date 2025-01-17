@@ -13,6 +13,12 @@ var can_special_2 : bool = true
 func _on_attack_cooldown_timeout() -> void:
 	can_attack = true
 
+func _on_special_1_cooldown_timeout() -> void:
+	can_special_1 = true
+
+func _on_special_2_cooldown_timeout() -> void:
+	can_special_2 = true
+
 func movement_input(delta: float) -> void:
 	# Makes the player look at the mouse and move to it in a straight line 
 	look_at(get_global_mouse_position())
@@ -29,17 +35,19 @@ func movement_input(delta: float) -> void:
 
 func specials_input() -> void:
 	if Input.is_action_just_pressed("attack") and can_attack:
-		can_attack = false
-		$Timer.start(0.5)
-
 		print("ATTACK")
+		can_attack = false
+		$attackCooldown.start(0.5)
 
-	# Need to find a way to make multiple timers
 	if Input.is_action_just_pressed("special1") and can_special_1:
 		print("SPECIAL 1")
-	
+		can_special_1 = false
+		$special1Cooldown.start(2.0)
+
 	if Input.is_action_just_pressed("special2") and can_special_2:
 		print("SPECIAL 2")
+		can_special_2 = false
+		$special2Cooldown.start(5.0)
 
 func _process(delta: float) -> void:
 	specials_input()
