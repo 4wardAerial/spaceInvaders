@@ -6,7 +6,7 @@ const MAX_VELOCITY : float = 100.0
 const ACCEL : float = 2.0
 const DRAG : float = 1.0                                                                          
 
-func movement_input(delta) -> void:
+func movement_input(delta: float) -> void:
 	# Makes the player look at the mouse and move to it in a straight line 
 	look_at(get_global_mouse_position())
 	
