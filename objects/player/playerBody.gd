@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
 const SPEED : float = 100.0
+const ROTATION_SPEED : float = 1.5
 const MIN_VELOCITY : float = 10.0
 const MAX_VELOCITY : float = 100.0
 const ACCEL : float = 2.0
 const DRAG : float = 1.0     
 
+var rotation_direction : float = 0
 var can_attack : bool = true
 var can_special_1 : bool = true
 var can_special_2 : bool = true                                                                   
@@ -21,9 +23,13 @@ func _on_special_2_cooldown_timeout() -> void:
 
 func movement_input(delta: float) -> void:
 	# Makes the player look at the mouse and move to it in a straight line 
-	look_at(get_global_mouse_position())
-	if Input.is_action_pressed("move"):		
-		velocity += transform.x * Input.get_action_strength("move") * SPEED * ACCEL * delta
+	$playerTopSprite.look_at(get_global_mouse_position())
+	rotation_direction = Input.get_axis("left", "right")
+	
+	if Input.is_action_pressed("down") or Input.is_action_pressed("up"):
+		print("PRESSED")
+		
+		velocity += transform.x * Input.get_axis("down", "up") * SPEED * ACCEL * delta
 		
 	else:
 		# Reduces velocity until full stop
@@ -52,8 +58,8 @@ func specials_input() -> void:
 
 func _process(delta: float) -> void:
 	specials_input()
-	print(position)
 
 func _physics_process(delta: float) -> void:
 	movement_input(delta)
+	rotation += rotation_direction * ROTATION_SPEED * delta
 	move_and_slide()

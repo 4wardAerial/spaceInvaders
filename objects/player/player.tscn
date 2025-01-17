@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ek3hn"]
 radius = 37.0
-height = 114.0
+height = 74.0
 
 [node name="player" type="Node2D"]
 position = Vector2(450, 450)
@@ -14,8 +14,9 @@ position = Vector2(450, 450)
 script = ExtResource("1_58cc7")
 
 [node name="playerBottomSprite" type="Sprite2D" parent="playerBody"]
-position = Vector2(-1.4782e-05, -0.499994)
-scale = Vector2(0.5625, 0.898438)
+position = Vector2(-5.72205e-06, -1.0848e-05)
+rotation = -1.57079
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_we2eh")
 
 [node name="playerTopSprite" type="Sprite2D" parent="playerBody"]
@@ -26,6 +27,7 @@ texture = ExtResource("1_we2eh")
 offset = Vector2(54.1609, -0.000732422)
 
 [node name="playerCollision" type="CollisionShape2D" parent="playerBody"]
+rotation = -1.57079
 shape = SubResource("CapsuleShape2D_ek3hn")
 
 [node name="playerCamera" type="Camera2D" parent="playerBody"]
