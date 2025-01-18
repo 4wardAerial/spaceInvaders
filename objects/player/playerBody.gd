@@ -5,10 +5,10 @@ signal special_1_shot
 signal special_2_shot
 signal fell_off
 
-const SPEED : float = 100.0
+const SPEED : float = 200.0
 const ROTATION_SPEED : float = 0.8
 const MIN_VELOCITY : float = 10.0
-const MAX_VELOCITY : float = 100.0
+const MAX_VELOCITY : float = 200.0
 const MAX_CANNON_ANGLE : int = 75
 const ACCEL : float = 1.0
 const DRAG : float = 2.0     
@@ -73,9 +73,9 @@ func check_position() -> void:
 
 func _process(delta : float) -> void:
 	check_position()
-	cannon_rotation()
 	specials_input()
 
 func _physics_process(delta : float) -> void:
+	cannon_rotation()
 	movement_input(delta)
 	move_and_slide()
