@@ -1,6 +1,6 @@
 extends Area2D
 
-const SPEED : float = 500.0
+const SPEED : float = 600.0
 
 var direction : Vector2
 

@@ -7,7 +7,7 @@ func _on_player_bullet_shot(posit : Vector2, direct : Vector2) -> void:
 	bullet.position = posit
 	bullet.direction = direct
 	$projectiles.add_child(bullet)
-	
+
 func _on_player_special_1_shot() -> void:
 	print("SPECIAL 1")
 

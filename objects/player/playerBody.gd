@@ -5,7 +5,7 @@ signal special_1_shot
 signal special_2_shot
 
 const SPEED : float = 100.0
-const ROTATION_SPEED : float = 1.0
+const ROTATION_SPEED : float = 0.8
 const MIN_VELOCITY : float = 10.0
 const MAX_VELOCITY : float = 100.0
 const MAX_CANNON_ANGLE : int = 75
@@ -25,17 +25,15 @@ func _on_special_1_cooldown_timeout() -> void:
 
 func _on_special_2_cooldown_timeout() -> void:
 	can_special_2 = true
-	
+
 func cannon_rotation() -> void:
 	# Makes the cannon part of the sprite follow the mouse
-	# FIX : CANNON DOESN'T ROTATE TO OTHER MAX WITH MOUSE IS MOVED BEHIND IT
 	$playerTopSprite.look_at(get_global_mouse_position())
-	# Stops cannon rotation at certain angle
-	$playerTopSprite.rotation_degrees = clamp($playerTopSprite.rotation_degrees, -MAX_CANNON_ANGLE, MAX_CANNON_ANGLE)
 
 func movement_input(delta: float) -> void:
 	# Bottom part of the sprite rotates via input
 	rotation_direction = Input.get_axis("left", "right")
+	rotation += rotation_direction * ROTATION_SPEED * delta
 	
 	if Input.is_action_pressed("down") or Input.is_action_pressed("up"):
 		# '+=' gives acceleration, but velocity is limited by 'limit_length'
@@ -52,23 +50,17 @@ func movement_input(delta: float) -> void:
 
 func specials_input() -> void:
 	var cannon_direction : Vector2 = (get_global_mouse_position() - position).normalized()
-	var body_direction : Vector2 = Vector2(cos(rotation), sin(rotation))
-	
-	# FIX : WHEN MOUSE IS OUT OF MAX ANGLE, IT NEEDS TO FIRE AT THAT MAX ANGLE AND NOT AT BIGGER ONES
-	if cannon_direction.angle_to(body_direction) < -1.309:
-		cannon_direction = Vector2(cos(-0.262), sin(-0.262))
 	
 	if Input.is_action_just_pressed("attack") and can_attack:
 		can_attack = false
 		$playerTimers/attackCooldown.start(0.5)
 		bullet_shot.emit($playerTopSprite/bulletMarker.global_position, cannon_direction)
-		print(rad_to_deg(cannon_direction.angle_to(body_direction)))
-
+		
 	if Input.is_action_just_pressed("special1") and can_special_1:
 		can_special_1 = false
 		$playerTimers/special1Cooldown.start(2.0)
 		special_1_shot.emit()
-
+		
 	if Input.is_action_just_pressed("special2") and can_special_2:
 		can_special_2 = false
 		$playerTimers/special2Cooldown.start(5.0)
@@ -80,5 +72,4 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	movement_input(delta)
-	rotation += rotation_direction * ROTATION_SPEED * delta
 	move_and_slide()
