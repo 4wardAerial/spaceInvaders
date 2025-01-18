@@ -31,14 +31,6 @@ scale = Vector2(1.51488, 8.5333)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_ek3hn")
 
-[node name="playerCamera" type="Camera2D" parent="."]
-zoom = Vector2(0.75, 0.75)
-limit_left = 0
-limit_top = 0
-limit_right = 9600
-limit_bottom = 5400
-position_smoothing_enabled = true
-
 [node name="playerTimers" type="Node2D" parent="."]
 
 [node name="attackCooldown" type="Timer" parent="playerTimers"]

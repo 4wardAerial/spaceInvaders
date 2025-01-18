@@ -13,3 +13,9 @@ func _on_player_special_1_shot() -> void:
 
 func _on_player_special_2_shot() -> void:
 	print("SPECIAL 2")
+
+func _on_player_fell_off() -> void:
+	$player.queue_free()
+	
+func _ready() -> void:
+	$player.position = Vector2(100, 100)

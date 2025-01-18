@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal bullet_shot(posit, direct)
 signal special_1_shot
 signal special_2_shot
+signal fell_off
 
 const SPEED : float = 100.0
 const ROTATION_SPEED : float = 0.8
@@ -65,8 +66,13 @@ func specials_input() -> void:
 		can_special_2 = false
 		$playerTimers/special2Cooldown.start(5.0)
 		special_2_shot.emit()
+		
+func check_position() -> void:
+	if position.x < 0 or position.x > 9600 or position.y < 0 or position.y > 5400:
+		fell_off.emit()
 
 func _process(delta: float) -> void:
+	check_position()
 	cannon_rotation()
 	specials_input()
 
