@@ -1,10 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://q0rt42xv4m8w"]
+[gd_scene load_steps=3 format=3 uid="uid://q0rt42xv4m8w"]
 
+[ext_resource type="Script" path="res://objects/world/world.gd" id="1_5fib8"]
 [ext_resource type="Texture2D" uid="uid://bbryqggr8pbmj" path="res://images/bckg_totk_circles.png" id="1_ih6l5"]
 
 [node name="world" type="Node2D"]
+script = ExtResource("1_5fib8")
 
 [node name="worldBackground" type="Sprite2D" parent="."]
 position = Vector2(4800, 2700)
 scale = Vector2(5, 5)
 texture = ExtResource("1_ih6l5")
+
+[node name="spawnPositions" type="Node2D" parent="."]
+
+[node name="player1" type="Marker2D" parent="spawnPositions"]
+position = Vector2(1000, 1000)
+
+[node name="player2" type="Marker2D" parent="spawnPositions"]
+position = Vector2(1000, 4400)
+
+[node name="player3" type="Marker2D" parent="spawnPositions"]
+position = Vector2(8600, 1000)
+
+[node name="player4" type="Marker2D" parent="spawnPositions"]
+position = Vector2(8600, 4400)

@@ -18,6 +18,7 @@ position = Vector2(438, 420)
 
 [node name="projectiles" type="Node2D" parent="."]
 
+[connection signal="selected_spawn" from="world" to="." method="_on_world_selected_spawn"]
 [connection signal="bullet_shot" from="player" to="." method="_on_player_bullet_shot"]
 [connection signal="fell_off" from="player" to="." method="_on_player_fell_off"]
 [connection signal="special_1_shot" from="player" to="." method="_on_player_special_1_shot"]

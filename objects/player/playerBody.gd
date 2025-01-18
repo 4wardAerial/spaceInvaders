@@ -31,7 +31,7 @@ func cannon_rotation() -> void:
 	# Makes the cannon part of the sprite follow the mouse
 	$playerTopSprite.look_at(get_global_mouse_position())
 
-func movement_input(delta: float) -> void:
+func movement_input(delta : float) -> void:
 	# Bottom part of the sprite rotates via input
 	rotation_direction = Input.get_axis("left", "right")
 	rotation += rotation_direction * ROTATION_SPEED * delta
@@ -71,11 +71,11 @@ func check_position() -> void:
 	if position.x < 0 or position.x > 9600 or position.y < 0 or position.y > 5400:
 		fell_off.emit()
 
-func _process(delta: float) -> void:
+func _process(delta : float) -> void:
 	check_position()
 	cannon_rotation()
 	specials_input()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta : float) -> void:
 	movement_input(delta)
 	move_and_slide()
