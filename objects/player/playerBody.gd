@@ -14,6 +14,7 @@ const ACCEL : float = 1.0
 const DRAG : float = 2.0     
 
 var rotation_direction : float = 0
+var can_control : bool = false
 var can_attack : bool = true
 var can_special_1 : bool = true
 var can_special_2 : bool = true                                                                   
@@ -27,6 +28,9 @@ func _on_special_1_cooldown_timeout() -> void:
 func _on_special_2_cooldown_timeout() -> void:
 	can_special_2 = true
 
+func _on_camera_finished_zoom() -> void:
+	can_control = true
+	
 func cannon_rotation() -> void:
 	# Makes the cannon part of the sprite follow the mouse
 	$playerTopSprite.look_at(get_global_mouse_position())
@@ -73,9 +77,11 @@ func check_position() -> void:
 
 func _process(delta : float) -> void:
 	check_position()
-	specials_input()
+	
+	if can_control:
+		specials_input()
+		movement_input(delta)
 
 func _physics_process(delta : float) -> void:
 	cannon_rotation()
-	movement_input(delta)
 	move_and_slide()

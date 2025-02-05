@@ -23,3 +23,4 @@ position = Vector2(4800, 2700)
 [connection signal="fell_off" from="player" to="." method="_on_player_fell_off"]
 [connection signal="special_1_shot" from="player" to="." method="_on_player_special_1_shot"]
 [connection signal="special_2_shot" from="player" to="." method="_on_player_special_2_shot"]
+[connection signal="finished_zoom" from="camera" to="player" method="_on_camera_finished_zoom"]
