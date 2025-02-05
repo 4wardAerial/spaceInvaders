@@ -14,7 +14,7 @@ script = ExtResource("1_usc70")
 position = Vector2(438, 420)
 
 [node name="camera" parent="." instance=ExtResource("4_iddxc")]
-position = Vector2(438, 420)
+position = Vector2(4800, 2700)
 
 [node name="projectiles" type="Node2D" parent="."]
 
